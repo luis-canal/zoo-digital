@@ -1,0 +1,26 @@
+package br.edu.atitus.luis_canal.zoo_digital.animais;
+
+import br.edu.atitus.interfaces.Corrida;
+import br.edu.atitus.interfaces.Nado;
+
+public final class Gato extends Mamifero implements Corrida, Nado {
+    public Gato(String nome, Integer idade) {
+        super(nome, idade, true);
+    }
+    @Override
+    public void comer() {
+        this.comer("carne");
+    }
+    @Override
+    public void emitirSom() {
+        IO.println(this.getNome() +  " está miando!");
+    }
+    @Override
+    public void correr() {
+        IO.println(this.getNome() + " está correndo pelo telhado!");
+    }
+    @Override
+    public void nadar() {
+        IO.println(this.getNome() + " está nadando MUITO assustado!");
+    }
+}
