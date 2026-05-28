@@ -1,6 +1,6 @@
 package br.edu.atitus.luis_canal.zoo_digital.animais;
 
-import br.edu.atitus.interfaces.Nado;
+import br.edu.atitus.comportamentos.Nado;
 
 public final class Golfinho extends Mamifero implements Nado {
     public Golfinho(String nome, Integer idade) {

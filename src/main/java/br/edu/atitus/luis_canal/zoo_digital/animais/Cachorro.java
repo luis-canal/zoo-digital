@@ -1,7 +1,7 @@
 package br.edu.atitus.luis_canal.zoo_digital.animais;
 
-import br.edu.atitus.interfaces.Corrida;
-import br.edu.atitus.interfaces.Nado;
+import br.edu.atitus.comportamentos.Corrida;
+import br.edu.atitus.comportamentos.Nado;
 
 public final class Cachorro extends Mamifero implements Corrida, Nado {
     public Cachorro(String nome, Integer idade) {
