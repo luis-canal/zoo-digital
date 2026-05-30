@@ -2,7 +2,7 @@ package br.edu.atitus.luis_canal.zoo_digital.especies;
 public abstract class Ave extends Animal{
     private String corPena;
     public Ave(String nome, String especie, int idade, String corPena) {
-        super(nome, especie, idade);
+        super(nome, "Ave", idade);
         this.corPena = corPena;
     }
     public String getCorPena() {
