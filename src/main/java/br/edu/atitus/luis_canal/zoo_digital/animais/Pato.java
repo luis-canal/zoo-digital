@@ -30,4 +30,9 @@ public class Pato extends Ave implements Nado, Voo, Corrida {
     public void emitirSom() {
         System.out.println(getNome() + " está grasnando.");
     }
+
+    @Override
+    public void comer() {
+        this.comer("repolho");
+    }
 }

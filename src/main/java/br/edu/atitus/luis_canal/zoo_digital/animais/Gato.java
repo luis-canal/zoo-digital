@@ -2,10 +2,11 @@ package br.edu.atitus.luis_canal.zoo_digital.animais;
 
 import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Corrida;
 import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Nado;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Predacao;
 
 import br.edu.atitus.luis_canal.zoo_digital.especies.Mamifero;
 
-public final class Gato extends Mamifero implements Corrida, Nado {
+public final class Gato extends Mamifero implements Corrida, Nado, Predacao {
     public Gato(String nome, Integer idade) {
         super(nome, idade, true);
     }
@@ -24,5 +25,10 @@ public final class Gato extends Mamifero implements Corrida, Nado {
     @Override
     public void nadar() {
         IO.println(this.getNome() + " está nadando MUITO assustado!");
+    }
+
+    @Override
+    public void cacar() {
+        IO.println(this.getNome() + " está caçando um rato e cagando!");
     }
 }
