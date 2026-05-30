@@ -1,8 +1,10 @@
 package br.edu.atitus.luis_canal.zoo_digital.animais;
 
-import br.edu.atitus.comportamentos.Corrida;
-import br.edu.atitus.comportamentos.Nado;
-import br.edu.atitus.comportamentos.Voo;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Corrida;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Nado;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Voo;
+
+import br.edu.atitus.luis_canal.zoo_digital.especies.Ave;
 
 public class Pato extends Ave implements Nado, Voo, Corrida {
     public Pato(String nome, String especie, int idade, String corPena) {
