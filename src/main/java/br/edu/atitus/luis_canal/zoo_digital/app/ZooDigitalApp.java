@@ -42,7 +42,7 @@ public class ZooDigitalApp {
                         break;
 
                     case 2:
-                        System.out.println("Listar Animais");
+                        listarTodosAnimais(animais);
                         break;
 
                     case 3:
@@ -118,4 +118,25 @@ private static void cadastrarAnimal(List<Animal> animais, Scanner scanner) {
 
     animais.add(animal);
     System.out.println("Animal cadastrado com sucesso!");
+}
+
+private static void listarTodosAnimais(List<Animal> animais) {
+
+    if (animais.isEmpty()) {
+        System.out.println("Nenhum animal cadastrado.");
+        return;
+    }
+
+    System.out.println("\n=== LISTA DE ANIMAIS ===");
+
+    for (Animal animal : animais) {
+
+        System.out.println("------------------------");
+        System.out.println("Nome: " + animal.getNome());
+        System.out.println("Idade: " + animal.getIdade());
+        System.out.println("Espécie: " + animal.getEspecie());
+
+        animal.emitirSom();
+        animal.comer();
+    }
 }
