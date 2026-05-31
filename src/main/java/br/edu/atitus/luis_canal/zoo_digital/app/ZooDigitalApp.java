@@ -66,11 +66,11 @@ public class ZooDigitalApp {
                         break;
 
                     case 7:
-                        System.out.println("Total de Animais");
+                        exibirTotalAnimais();
                         break;
 
                     case 0:
-                        System.out.println("Encerrando...");
+                        IO.println("Encerrando...");
                         break;
 
                     default:
@@ -247,4 +247,10 @@ private static void listarPredadores(List<Animal> animais) {
     if (!encontrou) {
         IO.println("Nenhum animal predador cadastrado.");
     }
+}
+
+private static void exibirTotalAnimais() {
+    IO.println("\n=== TOTAL DE ANIMAIS ===");
+    IO.println("Quantidade de animais cadastrados: "
+            + Animal.getContadorAnimais());
 }
