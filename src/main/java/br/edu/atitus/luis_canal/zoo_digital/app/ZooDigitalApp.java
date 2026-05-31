@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import br.edu.atitus.luis_canal.zoo_digital.animais.Cachorro;
+import br.edu.atitus.luis_canal.zoo_digital.animais.Gato;
+import br.edu.atitus.luis_canal.zoo_digital.animais.Golfinho;
 import br.edu.atitus.luis_canal.zoo_digital.especies.Animal;
 
 public class ZooDigitalApp {
@@ -35,7 +38,7 @@ public class ZooDigitalApp {
                 switch (opcao) {
 
                     case 1:
-                        System.out.println("Cadastrar Animal");
+                        cadastrarAnimal(animais, scanner);
                         break;
 
                     case 2:
@@ -77,4 +80,42 @@ public class ZooDigitalApp {
 
         scanner.close();
     }
+}
+
+private static void cadastrarAnimal(List<Animal> animais, Scanner scanner) {
+
+    System.out.println("\n=== CADASTRAR ANIMAL ===");
+
+    System.out.println("1 - Cachorro");
+    System.out.println("2 - Gato");
+    System.out.println("3 - Golfinho");
+
+    System.out.print("Escolha o animal: ");
+    int tipo = Integer.parseInt(scanner.nextLine());
+
+    System.out.print("Nome: ");
+    String nome = scanner.nextLine();
+
+    System.out.print("Idade: ");
+    int idade = Integer.parseInt(scanner.nextLine());
+
+    Animal animal = null;
+
+    switch (tipo) {
+        case 1:
+            animal = new Cachorro(nome, idade);
+            break;
+        case 2:
+            animal = new Gato(nome, idade);
+            break;
+        case 3:
+            animal = new Golfinho(nome, idade);
+            break;
+        default:
+            System.out.println("Tipo inválido.");
+            return;
+    }
+
+    animais.add(animal);
+    System.out.println("Animal cadastrado com sucesso!");
 }
