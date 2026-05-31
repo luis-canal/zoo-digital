@@ -7,6 +7,10 @@ import java.util.Scanner;
 import br.edu.atitus.luis_canal.zoo_digital.animais.Cachorro;
 import br.edu.atitus.luis_canal.zoo_digital.animais.Gato;
 import br.edu.atitus.luis_canal.zoo_digital.animais.Golfinho;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Corrida;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Nado;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Predacao;
+import br.edu.atitus.luis_canal.zoo_digital.comportamentos.Voo;
 import br.edu.atitus.luis_canal.zoo_digital.especies.Animal;
 
 public class ZooDigitalApp {
@@ -21,16 +25,16 @@ public class ZooDigitalApp {
 
         while (opcao != 0) {
 
-            System.out.println("\n===== ZOO DIGITAL =====");
-            System.out.println("1 - Cadastrar Animal");
-            System.out.println("2 - Listar Todos Animais");
-            System.out.println("3 - Listar Animais Corredores");
-            System.out.println("4 - Listar Animais Nadadores");
-            System.out.println("5 - Listar Animais Voadores");
-            System.out.println("6 - Listar Animais Predadores");
-            System.out.println("7 - Exibir Total de Animais");
-            System.out.println("0 - Sair");
-            System.out.print("Opção: ");
+            IO.println("\n===== ZOO DIGITAL =====");
+            IO.println("1 - Cadastrar Animal");
+            IO.println("2 - Listar Todos Animais");
+            IO.println("3 - Listar Animais Corredores");
+            IO.println("4 - Listar Animais Nadadores");
+            IO.println("5 - Listar Animais Voadores");
+            IO.println("6 - Listar Animais Predadores");
+            IO.println("7 - Exibir Total de Animais");
+            IO.println("0 - Sair");
+            IO.print("Opção: ");
 
             try {
                 opcao = Integer.parseInt(scanner.nextLine());
@@ -46,19 +50,19 @@ public class ZooDigitalApp {
                         break;
 
                     case 3:
-                        System.out.println("Listar Corredores");
+                        listarCorredores(animais);
                         break;
 
                     case 4:
-                        System.out.println("Listar Nadadores");
+                        listarNadadores(animais);
                         break;
 
                     case 5:
-                        System.out.println("Listar Voadores");
+                        listarVoadores(animais);
                         break;
 
                     case 6:
-                        System.out.println("Listar Predadores");
+                        listarPredadores(animais);
                         break;
 
                     case 7:
@@ -70,11 +74,11 @@ public class ZooDigitalApp {
                         break;
 
                     default:
-                        System.out.println("Opção inválida.");
+                        IO.println("Opção inválida.");
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Digite um número válido.");
+                IO.println("Digite um número válido.");
             }
         }
 
@@ -84,19 +88,19 @@ public class ZooDigitalApp {
 
 private static void cadastrarAnimal(List<Animal> animais, Scanner scanner) {
 
-    System.out.println("\n=== CADASTRAR ANIMAL ===");
+    IO.println("\n=== CADASTRAR ANIMAL ===");
 
-    System.out.println("1 - Cachorro");
-    System.out.println("2 - Gato");
-    System.out.println("3 - Golfinho");
+    IO.println("1 - Cachorro");
+    IO.println("2 - Gato");
+    IO.println("3 - Golfinho");
 
-    System.out.print("Escolha o animal: ");
+    IO.print("Escolha o animal: ");
     int tipo = Integer.parseInt(scanner.nextLine());
 
-    System.out.print("Nome: ");
+    IO.print("Nome: ");
     String nome = scanner.nextLine();
 
-    System.out.print("Idade: ");
+    IO.print("Idade: ");
     int idade = Integer.parseInt(scanner.nextLine());
 
     Animal animal = null;
@@ -112,18 +116,18 @@ private static void cadastrarAnimal(List<Animal> animais, Scanner scanner) {
             animal = new Golfinho(nome, idade);
             break;
         default:
-            System.out.println("Tipo inválido.");
+            IO.println("Tipo inválido.");
             return;
     }
 
     animais.add(animal);
-    System.out.println("Animal cadastrado com sucesso!");
+    IO.println("Animal cadastrado com sucesso!");
 }
 
 private static void listarTodosAnimais(List<Animal> animais) {
 
     if (animais.isEmpty()) {
-        System.out.println("Nenhum animal cadastrado.");
+        IO.println("Nenhum animal cadastrado.");
         return;
     }
 
@@ -131,12 +135,116 @@ private static void listarTodosAnimais(List<Animal> animais) {
 
     for (Animal animal : animais) {
 
-        System.out.println("------------------------");
-        System.out.println("Nome: " + animal.getNome());
-        System.out.println("Idade: " + animal.getIdade());
-        System.out.println("Espécie: " + animal.getEspecie());
+        IO.println("------------------------");
+        IO.println("Nome: " + animal.getNome());
+        IO.println("Idade: " + animal.getIdade());
+        IO.println("Espécie: " + animal.getEspecie());
 
         animal.emitirSom();
         animal.comer();
+    }
+}
+
+private static void listarCorredores(List<Animal> animais) {
+
+    IO.println("\n=== ANIMAIS CORREDORES ===");
+
+    boolean encontrou = false;
+
+    for (Animal animal : animais) {
+
+        if (animal instanceof Corrida corredor) {
+
+            encontrou = true;
+
+            IO.println("------------------------");
+            IO.println("Nome: " + animal.getNome());
+            IO.println("Idade: " + animal.getIdade());
+            IO.println("Espécie: " + animal.getEspecie());
+
+            corredor.correr();
+        }
+    }
+
+    if (!encontrou) {
+        IO.println("Nenhum animal corredor cadastrado.");
+    }
+}
+
+private static void listarNadadores(List<Animal> animais) {
+
+    IO.println("\n=== ANIMAIS NADADORES ===");
+
+    boolean encontrou = false;
+
+    for (Animal animal : animais) {
+
+        if (animal instanceof Nado nadador) {
+
+            encontrou = true;
+
+            IO.println("------------------------");
+            IO.println("Nome: " + animal.getNome());
+            IO.println("Idade: " + animal.getIdade());
+            IO.println("Espécie: " + animal.getEspecie());
+
+            nadador.nadar();
+        }
+    }
+
+    if (!encontrou) {
+        IO.println("Nenhum animal nadador cadastrado.");
+    }
+}
+
+private static void listarVoadores(List<Animal> animais) {
+
+    IO.println("\n=== ANIMAIS VOADORES ===");
+
+    boolean encontrou = false;
+
+    for (Animal animal : animais) {
+
+        if (animal instanceof Voo voador) {
+
+            encontrou = true;
+
+            IO.println("------------------------");
+            IO.println("Nome: " + animal.getNome());
+            IO.println("Idade: " + animal.getIdade());
+            IO.println("Espécie: " + animal.getEspecie());
+
+            voador.voar();
+        }
+    }
+
+    if (!encontrou) {
+        IO.println("Nenhum animal voador cadastrado.");
+    }
+}
+
+private static void listarPredadores(List<Animal> animais) {
+
+    IO.println("\n=== ANIMAIS PREDADORES ===");
+
+    boolean encontrou = false;
+
+    for (Animal animal : animais) {
+
+        if (animal instanceof Predacao predador) {
+
+            encontrou = true;
+
+            IO.println("------------------------");
+            IO.println("Nome: " + animal.getNome());
+            IO.println("Idade: " + animal.getIdade());
+            IO.println("Espécie: " + animal.getEspecie());
+
+            predador.cacar();
+        }
+    }
+
+    if (!encontrou) {
+        IO.println("Nenhum animal predador cadastrado.");
     }
 }
